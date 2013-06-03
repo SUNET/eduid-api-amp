@@ -17,7 +17,7 @@ class AttributeFetcherTests(MongoTestCase):
                           bson.ObjectId('000000000000000000000000'))
 
     def test_existing_user(self):
-        user_id = self.conn['test'].registered.insert({
+        user_id = self.conn['test'].users.insert({
             'email': 'john@example.com',
             'givenName': 'John',
         })
@@ -29,7 +29,7 @@ class AttributeFetcherTests(MongoTestCase):
             )
 
     def test_malicious_attributes(self):
-        user_id = self.conn['test'].registered.insert({
+        user_id = self.conn['test'].users.insert({
             'email': 'john@example.com',
             'givenName': 'John',
             'malicious': 'hacker',
