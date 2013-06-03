@@ -1,12 +1,12 @@
 from eduid_am.exceptions import UserDoesNotExist
 
 
-def attribute_fetcher(db, user_id):
+def attribute_fetcher(db, _id):
     attributes = {}
 
-    user = db.users.find_one({'_id': user_id})
+    user = db.users.find_one({'_id': _id})
     if user is None:
-        raise UserDoesNotExist("No user matching _id='%s' in collection 'users'" % user_id)
+        raise UserDoesNotExist("No user matching _id=%s in collection 'users'" % repr(_id))
 
     # white list of valid attributes for security reasons
     for attr in ['c',
