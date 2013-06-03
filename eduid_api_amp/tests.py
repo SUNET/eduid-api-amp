@@ -7,7 +7,7 @@ from eduid_am.tests import MongoTestCase
 from eduid_api_amp import attribute_fetcher
 
 
-TEST_DB_NAME = 'eduid_signup_test'
+TEST_DB_NAME = 'eduid_api_test'
 
 
 class AttributeFetcherTests(MongoTestCase):
