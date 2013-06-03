@@ -11,7 +11,7 @@ CHANGES = open(os.path.join(here, 'CHANGES.rst')).read()
 version = '0.1dev'
 
 requires = [
-    'pymongo==2.5',
+    'pymongo==2.5.1',
     'eduid_am',
 ]
 
@@ -45,6 +45,6 @@ setup(
     test_suite='eduid_api_amp',
     entry_points="""\
     [eduid_am.attribute_fetcher]
-    eduid_signup = eduid_api_amp:attribute_fetcher
+    eduid_api = eduid_api_amp:attribute_fetcher
     """,
 )
