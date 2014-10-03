@@ -12,7 +12,7 @@ version = '0.2.5-dev'
 
 requires = [
     'pymongo==2.6.3',
-    'eduid_am==0.4.9-dev',
+    'eduid_am>=0.4.9',
 ]
 
 testing_extras = [
