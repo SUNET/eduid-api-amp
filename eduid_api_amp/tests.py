@@ -16,30 +16,30 @@ class AttributeFetcherTests(MongoTestCase):
         super(AttributeFetcherTests, self).setUp(celery, get_attribute_manager, userdb_use_old_format=True)
 
     def test_invalid_user(self):
-        self.assertRaises(UserDoesNotExist, attribute_fetcher, self.conn['test'],
+        self.assertRaises(UserDoesNotExist, attribute_fetcher, self.tmp_db.conn['test'],
                           bson.ObjectId('000000000000000000000000'))
 
     def test_existing_user(self):
-        user_id = self.conn['test'].users.insert({
+        user_id = self.tmp_db.conn['test'].users.insert({
             'email': 'john@example.com',
             'givenName': 'John',
         })
         self.assertEqual(
-            attribute_fetcher(self.conn['test'], user_id),
+            attribute_fetcher(self.tmp_db.conn['test'], user_id),
             {'email': 'john@example.com',
              'givenName': 'John',
              }
         )
 
     def test_malicious_attributes(self):
-        user_id = self.conn['test'].users.insert({
+        user_id = self.tmp_db.conn['test'].users.insert({
             'email': 'john@example.com',
             'givenName': 'John',
             'malicious': 'hacker',
         })
         # Malicious attributes are not returned
         self.assertEqual(
-            attribute_fetcher(self.conn['test'], user_id),
+            attribute_fetcher(self.tmp_db.conn['test'], user_id),
             {'email': 'john@example.com',
              'givenName': 'John',
              }
